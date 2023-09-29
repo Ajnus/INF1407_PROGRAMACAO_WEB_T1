@@ -26,5 +26,7 @@ urlpatterns = [
     path('',views.home,name='homepage'),
     path('SegundaPagina',views.segundaPagina,name='segunda'),
     path("contatos/", include ('contatos.urls')),
+    path("forum/", include ('forum.urls')),
+
     ]
 
