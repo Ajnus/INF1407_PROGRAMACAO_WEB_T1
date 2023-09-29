@@ -28,6 +28,7 @@ class PublicacaoCreateView(View):
             return HttpResponseRedirect(reverse_lazy(
                 "forum:lista-publicacoes"))
 
+#Update
 class PublicacaoUpdateView(View):
     def get(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
