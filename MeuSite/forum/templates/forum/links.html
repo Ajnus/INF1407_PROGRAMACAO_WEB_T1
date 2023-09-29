@@ -1,0 +1,15 @@
+<!--
+Para incluir esse fragmento de página HTML
+em uma página HTML use:
+{ % include 'forum/links.html' % }
+-->
+<a href="/">
+    Home-Page
+    </a> |
+    <a href="{% url 'forum:home-publicacoes' %}">
+    Página inicial
+    </a> |
+    <a href="{% url 'forum:lista-publicacoes' %}">
+    Listar publicacoes
+    </a>
+    <hr>

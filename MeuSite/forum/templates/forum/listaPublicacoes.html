@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Publicacoes</title>
+<link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+</head>
+<body>
+{% include 'forum/links.html' %}
+<h1>Lista de publicacoes</h1>
+<table>
+<tr><th>Titulo</th><th>Texto</th><th>Ações disponíveis</th></tr>
+{% for publicacao in publicacoes %}
+<tr>
+<td>{{ publicacao.titulo }}</td><td>{{ publicacao.texto }}</td>
+</tr>
+{% empty %}
+<tr><th colspan="5">Ainda não tem pubicacoes cadastrados</th></tr>
+{% endfor %}
+</table>
+</body>
+</html>
