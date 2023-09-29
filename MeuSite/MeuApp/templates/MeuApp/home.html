@@ -1,8 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+<head>
+<script src="{% static 'js/javascript.js' %}"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrap">
+</head>
 <body>
+<div class="container text-center">
+<h1>Home Page</h1>
+</div>
 <form action='{% url 'segunda' %}'>
-<input type='submit' value='Outra página...'/>
+	<input type='submit' value='Outra página...' class='btn'>
 </form>
 </body>
-</html>
+</html>>
