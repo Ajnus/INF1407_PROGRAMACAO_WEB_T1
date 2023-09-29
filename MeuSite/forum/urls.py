@@ -8,4 +8,6 @@ urlpatterns = [
         name='lista-publicacoes'),
     path('', views.PublicacaoListView.as_view(),
         name='home-publicacoes'),
+    path('cria/', views.PublicacaoCreateView.as_view(),
+        name='cria-publicacao'),
 ]
