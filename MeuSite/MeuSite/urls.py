@@ -16,17 +16,20 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from MeuApp import views
+from MeuApp import views as viewsApp
+from MeuSite import views
 from django.urls import path
 from django.urls.conf import include
+from django.urls import include
 
 
 urlpatterns = [
     path('admin/',admin.site.urls),
-    path('',views.home,name='homepage'),
-    path('SegundaPagina',views.segundaPagina,name='segunda'),
+    path('',viewsApp.home,name='homepage'),
+    path('SegundaPagina',viewsApp.segundaPagina,name='segunda'),
     path("contatos/", include ('contatos.urls')),
     path("forum/", include ('forum.urls')),
-
+    path('accounts/',views.homeSec,name='sec-home'),
+    #path('accounts/', include('django.contrib.auth.urls')),
     ]
 
