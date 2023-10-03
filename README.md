@@ -3,4 +3,4 @@
 Participantes: 
 
 Miguel Garcia - 2120240
-Jam Alpha - 
+Jam Ajna Soares - 2211689
