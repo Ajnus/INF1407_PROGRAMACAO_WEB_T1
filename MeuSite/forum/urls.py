@@ -13,4 +13,6 @@ urlpatterns = [
         name='atualiza-publicacao'),
     path('cria/', views.PublicacaoCreateView.as_view(),
         name='cria-publicacao'),
+    path('apaga/<int:pk>/', views.PublicacaoDeleteView.as_view(),
+        name='apaga-publicacao'),
 ]

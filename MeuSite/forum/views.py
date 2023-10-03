@@ -37,8 +37,8 @@ class PublicacaoUpdateView(View):
         return render(request, 'forum/atualizaPublicacao.html', context)
    
     def post(self, request, pk, *args, **kwargs):
-        publicacao = get_object_or_404(Pessoa, pk=pk)
-        formulario = PublicacaoModel2Form(request.POST, instance=pessoa)
+        publicacao = get_object_or_404(Publicacao, pk=pk)
+        formulario = PublicacaoModel2Form(request.POST, instance=publicacao)
         if formulario.is_valid():
             publicacao = formulario.save() # cria uma pessoa com os dados do formulário
             publicacao.save() # salva uma pessoa no banco de dados
@@ -46,3 +46,17 @@ class PublicacaoUpdateView(View):
         else:
             contexto = {'publicacao': formulario, }
             return render(request, 'forum/atualizaPublicacao.html', contexto)
+
+
+class PublicacaoDeleteView(View):
+    def get(self, request, pk, *args, **kwargs):
+        publicacao = Publicacao.objects.get(pk=pk)
+        contexto = { 'publicacao': publicacao, }
+        return render(
+            request, 'forum/apagaPublicacao.html',
+            contexto)
+    def post(self, request, pk, *args, **kwargs):
+        publicacao = Publicacao.objects.get(pk=pk)
+        publicacao.delete()
+        return HttpResponseRedirect(
+            reverse_lazy("forum:lista-publicacoes"))

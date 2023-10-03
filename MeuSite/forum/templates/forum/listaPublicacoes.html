@@ -15,8 +15,11 @@
         {% for publicacao in publicacoes %}
             <tr>
             <td>{{ publicacao.titulo }}</td><td>{{ publicacao.texto }}</td>
-            <td><a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> 
-                
+            <td>
+                <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
+                <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Excluir</a> 
+            
+            </td>
         </tr>
     {% empty %}
     <tr><th colspan="5">Ainda não tem pubicacoes cadastradas</th></tr>
