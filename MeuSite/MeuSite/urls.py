@@ -21,6 +21,7 @@ from MeuSite import views
 from django.urls import path
 from django.urls.conf import include
 from django.urls import include
+from django.contrib.auth.views import LoginView
 
 
 urlpatterns = [
@@ -31,5 +32,11 @@ urlpatterns = [
     path("forum/", include ('forum.urls')),
     path('accounts/',views.homeSec,name='sec-home'),
     #path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/registro/',views.registro, name='sec-registro'),
+    path('accounts/login/', LoginView.as_view(template_name='registro/login.html',
+    ), name='sec-login'),
+    path('accounts/profile/',
+    views.paginaSecreta,
+    name='sec-paginaSecreta'),
     ]
 
