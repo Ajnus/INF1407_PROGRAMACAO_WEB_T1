@@ -22,6 +22,8 @@ from django.urls import path
 from django.urls.conf import include
 from django.urls import include
 from django.contrib.auth.views import LoginView
+from django.urls.base import reverse_lazy
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
@@ -38,5 +40,8 @@ urlpatterns = [
     path('accounts/profile/',
     views.paginaSecreta,
     name='sec-paginaSecreta'),
+    path('logout/', LogoutView.as_view(
+    next_page=reverse_lazy('sec-home'),
+    ), name='sec-logout'),
     ]
 
