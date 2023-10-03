@@ -17,13 +17,4 @@ urlpatterns = [
         name='cria-publicacao'),
     path('apaga/<int:pk>/', views.PublicacaoDeleteView.as_view(),
         name='apaga-publicacao'),
-    path('accounts/password_change/',
-        PasswordChangeView.as_view(
-        template_name='registro/password_change_form.html',
-        success_url=reverse_lazy('sec-password_change_done'),
-        ), name='sec-password_change'),
-    path('accounts/password_change_done/',
-        PasswordChangeDoneView.as_view(
-        template_name='registro/password_change_done.html',
-        ), name='sec-password_change_done'),
 ]
