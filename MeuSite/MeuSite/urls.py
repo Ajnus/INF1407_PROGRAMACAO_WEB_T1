@@ -28,6 +28,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordChangeDoneView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
+from MeuSite.views import MeuUpdateView
 
 
 urlpatterns = [
@@ -57,7 +58,7 @@ urlpatterns = [
     template_name='registro/password_change_done.html',
     ), name='sec-password_change_done'),
     path('accounts/terminaRegistro/<int:pk>/',
-        UpdateView.as_view(
+        MeuUpdateView.as_view(
             template_name='registro/user_form.html',
             success_url=reverse_lazy('sec-home'),
             model=User,
