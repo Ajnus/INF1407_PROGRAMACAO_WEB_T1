@@ -26,6 +26,8 @@ from django.urls.base import reverse_lazy
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordChangeDoneView
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.models import User
 
 
 urlpatterns = [
@@ -54,5 +56,16 @@ urlpatterns = [
     PasswordChangeDoneView.as_view(
     template_name='registro/password_change_done.html',
     ), name='sec-password_change_done'),
+    path('accounts/terminaRegistro/<int:pk>/',
+        UpdateView.as_view(
+            template_name='registro/user_form.html',
+            success_url=reverse_lazy('sec-home'),
+            model=User,
+            fields=[
+                'first_name',
+                'last_name',
+                'email',   
+        ],
+    ), name='sec-completaDadosUsuario'),
     ]
 
