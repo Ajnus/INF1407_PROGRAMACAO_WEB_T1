@@ -29,34 +29,49 @@ from django.contrib.auth.views import PasswordChangeDoneView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
 from MeuSite.views import MeuUpdateView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView
 
 
 urlpatterns = [
     path('admin/',admin.site.urls),
+
     path('',viewsApp.home,name='homepage'),
+
     path('SegundaPagina',viewsApp.segundaPagina,name='segunda'),
+
     path("contatos/", include ('contatos.urls')),
+
     path("forum/", include ('forum.urls')),
+
     path('accounts/',views.homeSec,name='sec-home'),
+
     #path('accounts/', include('django.contrib.auth.urls')),
+
     path('accounts/registro/',views.registro, name='sec-registro'),
+
     path('accounts/login/', LoginView.as_view(template_name='registro/login.html',
-    ), name='sec-login'),
+        ), name='sec-login'),
+
     path('accounts/profile/',
-    views.paginaSecreta,
-    name='sec-paginaSecreta'),
+        views.paginaSecreta,
+        name='sec-paginaSecreta'),
+
     path('logout/', LogoutView.as_view(
-    next_page=reverse_lazy('sec-home'),
-    ), name='sec-logout'),
+        next_page=reverse_lazy('sec-home'),
+        ), name='sec-logout'),
+
     path('accounts/password_change/',
-    PasswordChangeView.as_view(
-    template_name='registro/password_change_form.html',
-    success_url=reverse_lazy('sec-password_change_done'),
-    ), name='sec-password_change'),
+        PasswordChangeView.as_view(
+            template_name='registro/password_change_form.html',
+            success_url=reverse_lazy('sec-password_change_done'),
+        ), name='sec-password_change'),
+
     path('accounts/password_change_done/',
-    PasswordChangeDoneView.as_view(
-    template_name='registro/password_change_done.html',
-    ), name='sec-password_change_done'),
+        PasswordChangeDoneView.as_view(
+            template_name='registro/password_change_done.html',
+        ), name='sec-password_change_done'),
+
     path('accounts/terminaRegistro/<int:pk>/',
         MeuUpdateView.as_view(
             template_name='registro/user_form.html',
@@ -67,6 +82,28 @@ urlpatterns = [
                 'last_name',
                 'email',   
         ],
-    ), name='sec-completaDadosUsuario'),
+        ), name='sec-completaDadosUsuario'),
+
+    path('accounts/password_reset/', PasswordResetView.as_view(
+        template_name='registro/password_reset_form.html',
+        success_url=reverse_lazy('sec-password_reset_done'),
+        html_email_template_name='registro/password_reset_email.html',
+        subject_template_name='registro/password_reset_subject.txt',
+        from_email='webmaster@theforum.com.br',
+        ), name='password_reset'),
+
+    path('accounts/password_reset_done/', PasswordResetDoneView.as_view(
+        template_name='registro/password_reset_done.html',
+        ), name='sec-password_reset_done'),
+
+    path('accounts/password_reset_confirm/<uidb64>/<token>/',
+        PasswordResetConfirmView.as_view(
+        template_name='registro/password_reset_confirm.html',
+        success_url=reverse_lazy('sec-password_reset_complete'),
+        ), name='password_reset_confirm'),
+
+    path('accounts/password_reset_complete/', PasswordResetCompleteView.as_view(
+        template_name='registro/password_reset_complete.html'
+        ), name='sec-password_reset_complete'),
     ]
 
