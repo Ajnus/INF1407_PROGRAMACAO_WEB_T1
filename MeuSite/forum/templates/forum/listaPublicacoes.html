@@ -14,7 +14,10 @@
      {% if publicacoes %}
         {% for publicacao in publicacoes %}
             <tr>
-            <td>{{ publicacao.titulo }}</td><td>{{ publicacao.texto }}</td>
+            <td>    
+            <a href="{% url 'forum:ve-publicacao' pk=publicacao.id %}">{{ publicacao.titulo }}</a>
+            </td> 
+            <td>{{ publicacao.texto }}</td>
             <td>
                 <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
                 <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Excluir</a> 
