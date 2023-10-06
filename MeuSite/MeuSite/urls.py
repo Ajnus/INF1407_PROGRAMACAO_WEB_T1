@@ -16,7 +16,6 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from MeuApp import views as viewsApp
 from MeuSite import views
 from django.urls import path
 from django.urls.conf import include
@@ -36,11 +35,8 @@ from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCom
 urlpatterns = [
     path('admin/',admin.site.urls),
 
-    path('',viewsApp.home,name='homepage'),
+    path('', views.home, name='homepage'),
 
-    path('SegundaPagina',viewsApp.segundaPagina,name='segunda'),
-
-    path("contatos/", include ('contatos.urls')),
 
     path("forum/", include ('forum.urls')),
 

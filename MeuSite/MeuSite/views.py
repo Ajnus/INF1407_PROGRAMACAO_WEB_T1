@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 
+
 class MeuUpdateView(UpdateView):
     def get(self, request, pk, *args, **kwargs):
         if request.user.id == pk:
@@ -30,3 +31,7 @@ def registro(request):
 @login_required
 def paginaSecreta(request):
     return render(request, 'registro/paginaSecreta.html')
+
+@login_required
+def home(request):
+    return redirect('forum:lista-publicacoes')
