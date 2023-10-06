@@ -1,0 +1,22 @@
+<!--
+Para incluir esse fragmento de página HTML
+em uma página HTML use:
+{ % include 'forum/links.html' % }
+-->
+{% load static %}
+
+    <a href="{% url 'forum:lista-publicacoes' %}">
+    forum
+    </a> |
+    <a href="{% url 'forum:cria-publicacao' %}">
+        criar publicacao
+    </a> |
+    <div>
+    <a href="{% url 'sec-logout' %}">
+        Logout
+    </a>  
+    <a>
+        |  {{user.username}}
+    </a>
+    </div>
+    <hr>

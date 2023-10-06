@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Publicacoes</title>
+<link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+</head>
+<body>
+    {% include 'forum/links.html' %}
+    <h6>Post criado por {{publicacao.autor}}</h6>
+    <h3> Titulo: {{publicacao.titulo}}</h3>
+    <h5> Texto: {{publicacao.texto}}</h5>
+    <table>
+     <tr><th>Autor</th><th>Comentario</th><th>Ações disponíveis</th></tr>
+     {% if comentarios %}
+        {% for comentario in comentarios %}
+            <tr>
+            
+            <td>{{ comentario.autor }}</td>
+            <td>{{ comentario.texto }}</td>
+
+
+            {% if comentario.autor.username == user.username %}
+            <td>
+                
+                <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Excluir</a> 
+            
+            </td>
+            {% else %}
+            <td> </td>
+            {% endif %}
+        </tr>
+    {% empty %}
+    <tr><th colspan="5">Ainda não tem comentarios cadastrados</th></tr>
+    {% endfor %}
+    {% else %}
+    <tr><th colspan="5">Ainda não tem comentarios cadastrados</th></tr>
+    {% endif %}
+    </table>
+
+    <form>
+        {% csrf_token %}
+        <input type="text" name = "comentario_nome">
+        </input>
+        <button  method="submit" formmethod="post">
+            Criar Comentario
+        </button>
+    </form>
+
+
+</body>
+</html>
