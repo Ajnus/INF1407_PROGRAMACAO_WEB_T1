@@ -1,21 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Apaga Publicacao</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Apaga Publicacao</title>
 </head>
-<body>
+
+<body class="bg-dark">
     {% include 'links.html' %}
-    <h1>Remoção de publicacoes</h1>
+    <h1 style="color: white;">Remoção de publicações</h1>
     <form method="POST">
         {% csrf_token %}
-    Confirma a remoção de {{ publicacao }}?<br>
-    <button>
-    <a href="{% url 'forum:lista-publicacoes' %}"
-    style="text-decoration: none; color: black;">Cancela</a>
-    </button>
-    <input type="submit" value="Remove">
+        <a style="color: white;">Confirma a remoção de {{ publicacao }}?<br></a>
+        <button>
+            <a href="{% url 'forum:lista-publicacoes' %}" style="text-decoration: none; color: black;">Cancela</a>
+        </button>
+        <input type="submit" value="Remover">
     </form>
 </body>
+
 </html>

@@ -1,21 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Apaga Comentario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Apaga Comentario</title>
 </head>
-<body>
+
+<body class="bg-dark">
     {% include 'links.html' %}
-    <h1>Remoção de comentarios</h1>
+    <h1 style="color: white;">Remoção de comentários</h1>
     <form method="POST">
         {% csrf_token %}
-    Confirma a remoção de {{ comentario }}?<br>
-    <button>
-    <a href="{% url 've-publicacao' pk=publicacao.id  %}"
-    style="text-decoration: none; color: black;">Cancela</a>
-    </button>
-    <input type="submit" value="Remove">
+        <a style="color: white;"> Confirma a remoção de "{{ comentario }}"?<br></a>
+        <button>
+            <a href="{% url 'forum:ve-publicacao' pk=publicacao.id  %}"
+                style="text-decoration: none; color: black;">Cancelar</a>
+        </button>
+        <input type="submit" value="Remover">
     </form>
 </body>
+
 </html>

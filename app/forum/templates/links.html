@@ -6,7 +6,9 @@ em uma página HTML use:
 {% load static %}
 
     <a href="{% url 'forum:lista-publicacoes' %}">
-    Forum</a> |
+    Forum</a> 
+    
+    <a style="color: white;">|</a>
 
     {% if user.username  %}
     <a href="{% url 'sec-logout' %}">
@@ -16,7 +18,7 @@ em uma página HTML use:
         Login</a> 
     {% endif %}
 
-    <a>
+    <a style="color: white;">
         |  usuário: {% firstof user.username "visitante" %}
     </a>
     <hr>

@@ -1,57 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Lista Publicacoes</title>
-<link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+    <meta charset="UTF-8">
+    <title>Lista Publicacoes</title>
+    <link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+
+<body class="bg-dark">
     {% include 'links.html' %}
-    <h6>Post criado por {{publicacao.autor}}</h6>
-    <h3> Título: {{publicacao.titulo}}</h3>
-    <h5> Texto: {{publicacao.texto}}</h5>
+    <h6 style="color: white;">criado por: {{publicacao.autor}}</h6>
+    <h3 style="color: white;"> Título: {{publicacao.titulo}}</h3>
+    <h5 style="color: white;"> Texto: {{publicacao.texto}}</h5>
 
     <br><br><br>
     <hr>
-    <a>Comentários</a>
+    <a style="color: white;">Comentários</a>
     <table>
-     <tr><th>Autor</th><th>Comentário</th><th></th></tr>
-     {% if comentarios %}
+        <tr>
+            <th style="color: white;">Autor</th>
+            <th style="color: white;">Comentário</th>
+            <th></th>
+        </tr>
+        {% if comentarios %}
         {% for comentario in comentarios %}
-            <tr>
-            
-            <td>{{ comentario.autor }}</td>
-            <td>{{ comentario.texto }}</td>
+        <tr>
+
+            <td style="color: white;">{{ comentario.autor }}</td>
+            <td style="color: white;">{{ comentario.texto }}</td>
 
 
             {% if comentario.autor.username == user.username %}
             <td>
-                
-                <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Excluir</a> 
-            
+
+                <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Remover</a>
+
             </td>
             {% else %}
             <td> </td>
             {% endif %}
         </tr>
-    {% empty %}
-    <tr><th colspan="5">Ninguém comentou ainda.</th></tr>
-    {% endfor %}
-    {% else %}
-    <tr><th colspan="5">Ninguém comentou ainda.</th></tr>
-    {% endif %}
+        {% empty %}
+        <tr>
+            <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
+        </tr>
+        {% endif %}
     </table>
 
     <form>
         {% csrf_token %}
-        <input type="text" name = "comentario_nome">
+        <input type="text" name="comentario_nome">
         </input>
-        <button  method="submit" formmethod="post">
+        <button method="submit" formmethod="post">
             Criar Comentário
         </button>
     </form>
 
-
 </body>
+
 </html>

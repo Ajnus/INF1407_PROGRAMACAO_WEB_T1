@@ -1,22 +1,24 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <title>Cria Publicação</title>
-    <link rel="stylesheet"
-    href="{% static 'static/forum/css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'static/forum/css/estilo.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+
+<body class="bg-dark">
     {% include 'links.html' %}
-    <h1>Criar uma Publicação</h1>
+    <h1 style="color: white;">Criar uma Publicação</h1>
     <form action="" method="POST">
         <fieldset style="width: max-content;">
-            <legend>Formulário de Publicação</legend>
+            <legend style="color: white;">Formulário de Publicação</legend>
             {% csrf_token %}
-            <table class='formulario'>
+            <table style="color: white;" class='formulario'>
                 {{ formulario.as_table }}
             </table>
             <button type="submit">Criar publicação</button>
         </fieldset>
-    </form> 
+    </form>
 </body>

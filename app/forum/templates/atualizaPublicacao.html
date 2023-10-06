@@ -1,23 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Atualiza Publicação</title>
-        <link rel="stylesheet" href="{% static 'publicacoes/css/estilo.css' %}">
-    </head>
-    <body>
-        {% include 'links.html' %}
-        <h1>Atualização de Publicações</h1>
-        <form method="POST" class='formulario'>
-            {% csrf_token %}
-            <table>
-                {{ publicacao.as_table }}
-                <tr>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Atualiza Publicação</title>
+    <link rel="stylesheet" href="{% static 'publicacoes/css/estilo.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark">
+    {% include 'links.html' %}
+    <h1 style="color: white;">Atualização de Publicações</h1>
+    <form method="POST" class='formulario'>
+        {% csrf_token %}
+        <table style="color: white;">
+            {{ publicacao.as_table }}
+            <tr>
                 <td></td>
                 <td><input type="submit" value="Atualiza"></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+            </tr>
+        </table>
+    </form>
+</body>
+
 </html>

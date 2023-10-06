@@ -1,49 +1,61 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Lista Publicacoes</title>
-<link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+    <meta charset="UTF-8">
+    <title>Lista Publicacoes</title>
+    <link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+
+<body class="bg-dark">
     {% include 'links.html' %}
-    
-    <h1> The Forum </h1>
+
+    <h1 style="color: #00FF41;"> The Forum </h1>
     <a href="{% url 'forum:cria-publicacao' %}">
         Nova Publicação
-    </a> 
+    </a>
     <br> <br> <br> <br>
     <table>
-     <tr><th>Publicação</th><th>Autor</th><th></th></tr>
-     {% if publicacoes %}
+        <tr>
+            <th style="color: white;">Publicação</th>
+            <th style="color: white;">Autor</th>
+            <th></th>
+        </tr>
+        {% if publicacoes %}
         {% for publicacao in publicacoes %}
-            <tr>
-            <td>    
-            <a href="{% url 'forum:ve-publicacao' pk=publicacao.id %}">{{ publicacao.titulo }}</a>
-            </td> 
-            <td>{{ publicacao.autor }}</td>
+        <tr>
+            <td>
+                <a href="{% url 'forum:ve-publicacao' pk=publicacao.id %}">{{ publicacao.titulo }}</a>
+            </td>
+            <td style="color: white;">{{ publicacao.autor }}</td>
             {% if publicacao.autor.username == user.username %}
 
             <td>
                 <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
-                <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Excluir</a> 
-            
+                <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Remover</a>
+
             </td>
             {% else %}
             <td>
-                
+
             </td>
             {% endif %}
         </tr>
 
-    {% empty %}
-    <tr><th colspan="5">Ninguém publicou ainda.</th></tr>
-    {% endfor %}
-    {% else %}
-    <tr><th colspan="5">Ninguém publicou ainda.</th></tr>
-    {% endif %}
-</table>
+        {% empty %}
+        <tr>
+            <th style="color: white;" colspan="5">Ninguém publicou ainda.</th>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <th style="color: white;" colspan="5">Ninguém publicou ainda.</th>
+        </tr>
+        {% endif %}
+    </table>
 
 </body>
+
 </html>
