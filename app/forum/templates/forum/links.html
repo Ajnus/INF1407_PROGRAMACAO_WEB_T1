@@ -8,15 +8,18 @@ em uma página HTML use:
     <a href="{% url 'forum:lista-publicacoes' %}">
     forum
     </a> |
-    <a href="{% url 'forum:cria-publicacao' %}">
-        criar publicacao
-    </a> |
-    <div>
+
+    {% if user.username  %}
     <a href="{% url 'sec-logout' %}">
         Logout
-    </a>  
+    </a> 
+    {% else %}
+    <a href="{% url 'sec-login' %}">
+        Login
+    </a> 
+    {% endif %}
+
     <a>
-        |  {{user.username}}
+        |  {% firstof user.username "visitante" %}
     </a>
-    </div>
     <hr>

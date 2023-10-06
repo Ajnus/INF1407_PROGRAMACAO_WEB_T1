@@ -8,9 +8,14 @@
 </head>
 <body>
     {% include 'forum/links.html' %}
-    <h1>Lista de publicacoes</h1>
+    
+    <h1> Forum </h1>
+    <a href="{% url 'forum:cria-publicacao' %}">
+        nova publicacao
+    </a> 
+    <br> <br> <br> <br>
     <table>
-     <tr><th>Titulo</th><th>Autor</th><th>Ações disponíveis</th></tr>
+     <tr><th>Publicacao</th><th>Autor</th><th></th></tr>
      {% if publicacoes %}
         {% for publicacao in publicacoes %}
             <tr>
@@ -27,10 +32,11 @@
             </td>
             {% else %}
             <td>
-                Voce nao é o autor dessa publicacao
+                
             </td>
             {% endif %}
         </tr>
+
     {% empty %}
     <tr><th colspan="5">Ainda não tem pubicacoes cadastradas</th></tr>
     {% endfor %}
@@ -38,5 +44,6 @@
     <tr><th colspan="5">Ainda não tem publicacoes cadastradas</th></tr>
     {% endif %}
 </table>
+
 </body>
 </html>

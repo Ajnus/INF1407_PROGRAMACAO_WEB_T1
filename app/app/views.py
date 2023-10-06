@@ -13,8 +13,7 @@ class AppUpdateView(UpdateView):
                 return redirect('sec-home')
 
 def homeSec(request):
-    return render(request,
-        "registro/homeSec.html")
+    return redirect('forum:lista-publicacoes')
 
 def registro(request):
     if request.method == 'POST':
@@ -32,6 +31,6 @@ def registro(request):
 def logado(request):
     return redirect('forum:lista-publicacoes')
 
-@login_required
+
 def home(request):
     return redirect('forum:lista-publicacoes')

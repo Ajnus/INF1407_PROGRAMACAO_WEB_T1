@@ -30,7 +30,7 @@ class PublicacaoView(View):
 
         return self.get(request=request, pk = pk)
 
-@method_decorator(login_required, name='dispatch')
+
 class PublicacaoListView(View):
     def get(self, request, *args, **kwargs):
         publicacoes = Publicacao.objects.all()

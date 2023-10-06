@@ -11,8 +11,12 @@
     <h6>Post criado por {{publicacao.autor}}</h6>
     <h3> Titulo: {{publicacao.titulo}}</h3>
     <h5> Texto: {{publicacao.texto}}</h5>
+
+    <br><br><br>
+    <hr>
+    <a>Comentarios</a>
     <table>
-     <tr><th>Autor</th><th>Comentario</th><th>Ações disponíveis</th></tr>
+     <tr><th>Autor</th><th>Comentario</th><th></th></tr>
      {% if comentarios %}
         {% for comentario in comentarios %}
             <tr>
