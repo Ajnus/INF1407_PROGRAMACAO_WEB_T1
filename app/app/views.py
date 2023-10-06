@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
+from django.contrib.auth import login
 
 
 class AppUpdateView(UpdateView):
@@ -19,7 +20,8 @@ def registro(request):
     if request.method == 'POST':
         formulario = UserCreationForm(request.POST)
         if formulario.is_valid():
-            formulario.save()
+            user = formulario.save()
+            login(request, user)
             return redirect('sec-home')
     else:
         formulario = UserCreationForm()
