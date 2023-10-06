@@ -17,4 +17,9 @@ urlpatterns = [
         name='cria-publicacao'),
     path('apaga/<int:pk>/', views.PublicacaoDeleteView.as_view(),
         name='apaga-publicacao'),
+    path('publicacao/<int:pk>/', views.PublicacaoView.as_view(),
+        name='ve-publicacao'),
+    path('apagaComentario/<int:pk>/', views.ComentarioDeleteView.as_view(),
+        name='apaga-comentario'),
+    
 ]

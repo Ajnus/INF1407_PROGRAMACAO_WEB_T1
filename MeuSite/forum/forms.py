@@ -1,5 +1,5 @@
 from django import forms
-from forum.models import Publicacao
+from forum.models import Publicacao, Comentario
 
 class PublicacaoModel2Form(forms.ModelForm):
 
@@ -8,5 +8,15 @@ class PublicacaoModel2Form(forms.ModelForm):
         model = Publicacao
         fields = [
             'titulo',
+            'texto',
+        ]
+
+
+class ComentarioModel2Form(forms.ModelForm):
+
+
+    class Meta:
+        model = Comentario
+        fields = [
             'texto',
         ]

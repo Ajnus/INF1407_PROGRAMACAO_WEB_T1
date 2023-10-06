@@ -1,10 +1,31 @@
 from django.shortcuts import render, get_object_or_404
-from forum.models import Publicacao
+from forum.models import Publicacao,Comentario
 from django.views.generic.base import View
-from forum.forms import PublicacaoModel2Form
+from forum.forms import PublicacaoModel2Form, ComentarioModel2Form
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse_lazy
 
+
+class PublicacaoView(View):
+    def get(self, request, pk, *args, **kwargs):
+        publicacao = Publicacao.objects.get(pk=pk)
+        comentarios = Comentario.objects.filter(idPublicacao=pk)
+        contexto = { 'publicacao': publicacao, 'comentarios':comentarios}
+        return render(
+                request,
+                'forum/visualizaPublicacao.html',
+                contexto)
+    
+    def post(self, request, pk, *args, **kwargs):
+    
+        comentario_texto = request.POST.get("comentario_nome")
+
+        publicacao = Publicacao.objects.get(pk=pk)
+        novo_comentario = Comentario(texto=comentario_texto,idPublicacao =publicacao)
+
+        novo_comentario.save()
+
+        return self.get(request=request, pk = pk)
 
 class PublicacaoListView(View):
     def get(self, request, *args, **kwargs):
@@ -60,3 +81,22 @@ class PublicacaoDeleteView(View):
         publicacao.delete()
         return HttpResponseRedirect(
             reverse_lazy("forum:lista-publicacoes"))
+
+class ComentarioDeleteView(View):
+    def get(self, request, pk, *args, **kwargs):
+        comentario = Comentario.objects.get(pk=pk)
+        publicacao = comentario.idPublicacao
+        contexto = { 'publicacao': publicacao,'comentario': comentario, }
+        return render(
+            request, 'forum/apagaComentario.html',
+            contexto)
+    def post(self, request, pk, *args, **kwargs):
+        comentario = Comentario.objects.get(pk=pk)
+        publicacao = comentario.idPublicacao
+        comentario.delete()
+        return HttpResponseRedirect(
+            reverse_lazy("forum:ve-publicacao", kwargs={'pk': publicacao.id}))
+
+
+
+
