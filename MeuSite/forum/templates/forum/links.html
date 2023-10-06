@@ -3,6 +3,7 @@ Para incluir esse fragmento de página HTML
 em uma página HTML use:
 { % include 'forum/links.html' % }
 -->
+{% load static %}
 <a href="/">
     Home-Page
     </a> |
@@ -15,4 +16,7 @@ em uma página HTML use:
     <a href="{% url 'forum:cria-publicacao' %}">
         Cadastrar publicacao
     </a> 
+    <p>
+        Você é {% firstof user.username "visitante" %}
+    </p>
     <hr>

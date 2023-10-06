@@ -17,13 +17,13 @@ class PublicacaoView(View):
                 request,
                 'forum/visualizaPublicacao.html',
                 contexto)
-    
+    #CreateComentario
     def post(self, request, pk, *args, **kwargs):
     
         comentario_texto = request.POST.get("comentario_nome")
 
         publicacao = Publicacao.objects.get(pk=pk)
-        novo_comentario = Comentario(texto=comentario_texto,idPublicacao =publicacao)
+        novo_comentario = Comentario(texto=comentario_texto, autor=request.user,idPublicacao =publicacao)
 
         novo_comentario.save()
 
@@ -106,14 +106,20 @@ class ComentarioDeleteView(View):
     def get(self, request, pk, *args, **kwargs):
         comentario = Comentario.objects.get(pk=pk)
         publicacao = comentario.idPublicacao
-        contexto = { 'publicacao': publicacao,'comentario': comentario, }
-        return render(
-            request, 'forum/apagaComentario.html',
-            contexto)
+        if comentario.autor == request.user:
+            contexto = { 'publicacao': publicacao,'comentario': comentario, }
+            return render(
+                request, 'forum/apagaComentario.html',
+                contexto)
+        else:
+            return HttpResponseRedirect(
+            reverse_lazy("forum:ve-publicacao", kwargs={'pk': publicacao.id}))
+
     def post(self, request, pk, *args, **kwargs):
         comentario = Comentario.objects.get(pk=pk)
         publicacao = comentario.idPublicacao
-        comentario.delete()
+        if comentario.autor == request.user:
+            comentario.delete()
         return HttpResponseRedirect(
             reverse_lazy("forum:ve-publicacao", kwargs={'pk': publicacao.id}))
 
