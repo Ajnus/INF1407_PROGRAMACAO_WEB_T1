@@ -7,15 +7,15 @@
 <link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
 </head>
 <body>
-    {% include 'forum/links.html' %}
+    {% include 'links.html' %}
     
-    <h1> Forum </h1>
+    <h1> The Forum </h1>
     <a href="{% url 'forum:cria-publicacao' %}">
-        nova publicacao
+        Nova Publicação
     </a> 
     <br> <br> <br> <br>
     <table>
-     <tr><th>Publicacao</th><th>Autor</th><th></th></tr>
+     <tr><th>Publicação</th><th>Autor</th><th></th></tr>
      {% if publicacoes %}
         {% for publicacao in publicacoes %}
             <tr>
@@ -38,10 +38,10 @@
         </tr>
 
     {% empty %}
-    <tr><th colspan="5">Ainda não tem pubicacoes cadastradas</th></tr>
+    <tr><th colspan="5">Ninguém publicou ainda.</th></tr>
     {% endfor %}
     {% else %}
-    <tr><th colspan="5">Ainda não tem publicacoes cadastradas</th></tr>
+    <tr><th colspan="5">Ninguém publicou ainda.</th></tr>
     {% endif %}
 </table>
 

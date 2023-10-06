@@ -7,16 +7,16 @@
 <link rel="stylesheet" href="{% static 'forum/css/estilo.css' %}">
 </head>
 <body>
-    {% include 'forum/links.html' %}
+    {% include 'links.html' %}
     <h6>Post criado por {{publicacao.autor}}</h6>
-    <h3> Titulo: {{publicacao.titulo}}</h3>
+    <h3> Título: {{publicacao.titulo}}</h3>
     <h5> Texto: {{publicacao.texto}}</h5>
 
     <br><br><br>
     <hr>
-    <a>Comentarios</a>
+    <a>Comentários</a>
     <table>
-     <tr><th>Autor</th><th>Comentario</th><th></th></tr>
+     <tr><th>Autor</th><th>Comentário</th><th></th></tr>
      {% if comentarios %}
         {% for comentario in comentarios %}
             <tr>
@@ -36,10 +36,10 @@
             {% endif %}
         </tr>
     {% empty %}
-    <tr><th colspan="5">Ainda não tem comentarios cadastrados</th></tr>
+    <tr><th colspan="5">Ninguém comentou ainda.</th></tr>
     {% endfor %}
     {% else %}
-    <tr><th colspan="5">Ainda não tem comentarios cadastrados</th></tr>
+    <tr><th colspan="5">Ninguém comentou ainda.</th></tr>
     {% endif %}
     </table>
 
@@ -48,7 +48,7 @@
         <input type="text" name = "comentario_nome">
         </input>
         <button  method="submit" formmethod="post">
-            Criar Comentario
+            Criar Comentário
         </button>
     </form>
 

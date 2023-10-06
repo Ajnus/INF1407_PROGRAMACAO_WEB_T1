@@ -16,7 +16,7 @@ class PublicacaoView(View):
         contexto = { 'publicacao': publicacao, 'comentarios':comentarios, 'user':user}
         return render(
                 request,
-                'forum/visualizaPublicacao.html',
+                'visualizaPublicacao.html',
                 contexto)
     #CreateComentario
     def post(self, request, pk, *args, **kwargs):
@@ -37,7 +37,7 @@ class PublicacaoListView(View):
         contexto = { 'publicacoes': publicacoes, 'user':request.user}
         return render(
                 request,
-                'forum/listaPublicacoes.html',
+                'listaPublicacoes.html',
                 contexto)
 
 
@@ -46,7 +46,7 @@ class PublicacaoCreateView(View):
     def get(self, request, *args, **kwargs):
         contexto = { 'formulario': PublicacaoModel2Form, }
         return render(request,
-            "forum/criaPublicacao.html", contexto)
+            "criaPublicacao.html", contexto)
 
     def post(self, request, *args, **kwargs):
         formulario = PublicacaoModel2Form(request.POST)
@@ -64,7 +64,7 @@ class PublicacaoUpdateView(View):
         if publicacao.autor == request.user:
             formulario = PublicacaoModel2Form(instance=publicacao)
             context = {'publicacao': formulario, }
-            return render(request, 'forum/atualizaPublicacao.html', context)
+            return render(request, 'atualizaPublicacao.html', context)
         else:
             return HttpResponseRedirect(reverse_lazy(
                     "forum:lista-publicacoes"))
@@ -79,7 +79,7 @@ class PublicacaoUpdateView(View):
             return HttpResponseRedirect(reverse_lazy("forum:lista-publicacoes"))
         else:
             contexto = {'publicacao': formulario, }
-            return render(request, 'forum/atualizaPublicacao.html', contexto)
+            return render(request, 'atualizaPublicacao.html', contexto)
 
 
 @method_decorator(login_required, name='dispatch')
@@ -89,7 +89,7 @@ class PublicacaoDeleteView(View):
         if publicacao.autor == request.user:
             contexto = { 'publicacao': publicacao, }
             return render(
-                request, 'forum/apagaPublicacao.html',
+                request, 'apagaPublicacao.html',
                 contexto)
         else:
             return HttpResponseRedirect(reverse_lazy(
@@ -110,7 +110,7 @@ class ComentarioDeleteView(View):
         if comentario.autor == request.user:
             contexto = { 'publicacao': publicacao,'comentario': comentario, }
             return render(
-                request, 'forum/apagaComentario.html',
+                request, 'apagaComentario.html',
                 contexto)
         else:
             return HttpResponseRedirect(

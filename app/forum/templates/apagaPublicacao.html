@@ -3,16 +3,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Apaga Comentario</title>
+<title>Apaga Publicacao</title>
 </head>
 <body>
-    {% include 'forum/links.html' %}
-    <h1>Remoção de comentarios</h1>
+    {% include 'links.html' %}
+    <h1>Remoção de publicacoes</h1>
     <form method="POST">
         {% csrf_token %}
-    Confirma a remoção de {{ comentario }}?<br>
+    Confirma a remoção de {{ publicacao }}?<br>
     <button>
-    <a href="{% url 'forum:ve-publicacao' pk=publicacao.id  %}"
+    <a href="{% url 'forum:lista-publicacoes' %}"
     style="text-decoration: none; color: black;">Cancela</a>
     </button>
     <input type="submit" value="Remove">

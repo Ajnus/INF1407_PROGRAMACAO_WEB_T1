@@ -3,12 +3,12 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>Atualiza Publicacao</title>
+        <title>Atualiza Publicação</title>
         <link rel="stylesheet" href="{% static 'publicacoes/css/estilo.css' %}">
     </head>
     <body>
-        {% include 'forum/links.html' %}
-        <h1>Atualização de publicacoes</h1>
+        {% include 'links.html' %}
+        <h1>Atualização de Publicações</h1>
         <form method="POST" class='formulario'>
             {% csrf_token %}
             <table>

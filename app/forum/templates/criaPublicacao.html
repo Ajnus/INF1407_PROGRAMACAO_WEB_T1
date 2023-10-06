@@ -2,21 +2,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Cria Publicacao</title>
+    <title>Cria Publicação</title>
     <link rel="stylesheet"
     href="{% static 'static/forum/css/estilo.css' %}">
 </head>
 <body>
-    {% include 'forum/links.html' %}
-    <h1>Cria uma Publicacao</h1>
+    {% include 'links.html' %}
+    <h1>Criar uma Publicação</h1>
     <form action="" method="POST">
         <fieldset style="width: max-content;">
-            <legend>Formulário de Publicacao</legend>
+            <legend>Formulário de Publicação</legend>
             {% csrf_token %}
             <table class='formulario'>
                 {{ formulario.as_table }}
             </table>
-            <button type="submit">Cria publicacao</button>
+            <button type="submit">Criar publicação</button>
         </fieldset>
     </form> 
 </body>

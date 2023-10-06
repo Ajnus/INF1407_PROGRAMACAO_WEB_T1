@@ -1,25 +1,22 @@
 <!--
 Para incluir esse fragmento de página HTML
 em uma página HTML use:
-{ % include 'forum/links.html' % }
+{ % include 'links.html' % }
 -->
 {% load static %}
 
     <a href="{% url 'forum:lista-publicacoes' %}">
-    forum
-    </a> |
+    Forum</a> |
 
     {% if user.username  %}
     <a href="{% url 'sec-logout' %}">
-        Logout
-    </a> 
+        Logout</a> 
     {% else %}
     <a href="{% url 'sec-login' %}">
-        Login
-    </a> 
+        Login</a> 
     {% endif %}
 
     <a>
-        |  {% firstof user.username "visitante" %}
+        |  usuário: {% firstof user.username "visitante" %}
     </a>
     <hr>
