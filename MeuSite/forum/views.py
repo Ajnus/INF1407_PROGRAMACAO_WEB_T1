@@ -4,8 +4,10 @@ from django.views.generic.base import View
 from forum.forms import PublicacaoModel2Form, ComentarioModel2Form
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(login_required, name='dispatch')
 class PublicacaoView(View):
     def get(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
@@ -27,6 +29,7 @@ class PublicacaoView(View):
 
         return self.get(request=request, pk = pk)
 
+@method_decorator(login_required, name='dispatch')
 class PublicacaoListView(View):
     def get(self, request, *args, **kwargs):
         publicacoes = Publicacao.objects.all()
@@ -36,27 +39,36 @@ class PublicacaoListView(View):
                 'forum/listaPublicacoes.html',
                 contexto)
 
+
+@method_decorator(login_required, name='dispatch')
 class PublicacaoCreateView(View):
     def get(self, request, *args, **kwargs):
         contexto = { 'formulario': PublicacaoModel2Form, }
         return render(request,
             "forum/criaPublicacao.html", contexto)
+
     def post(self, request, *args, **kwargs):
         formulario = PublicacaoModel2Form(request.POST)
         if formulario.is_valid():
-            publicacao = formulario.save()
+            publicacao = formulario.save(commit=False)  
+            publicacao.autor = request.user
             publicacao.save()
             return HttpResponseRedirect(reverse_lazy(
                 "forum:lista-publicacoes"))
 
-#Update
+@method_decorator(login_required, name='dispatch')
 class PublicacaoUpdateView(View):
     def get(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
-        formulario = PublicacaoModel2Form(instance=publicacao)
-        context = {'publicacao': formulario, }
-        return render(request, 'forum/atualizaPublicacao.html', context)
-   
+        if publicacao.autor == request.user:
+            formulario = PublicacaoModel2Form(instance=publicacao)
+            context = {'publicacao': formulario, }
+            return render(request, 'forum/atualizaPublicacao.html', context)
+        else:
+            return HttpResponseRedirect(reverse_lazy(
+                    "forum:lista-publicacoes"))
+
+
     def post(self, request, pk, *args, **kwargs):
         publicacao = get_object_or_404(Publicacao, pk=pk)
         formulario = PublicacaoModel2Form(request.POST, instance=publicacao)
@@ -69,19 +81,27 @@ class PublicacaoUpdateView(View):
             return render(request, 'forum/atualizaPublicacao.html', contexto)
 
 
+@method_decorator(login_required, name='dispatch')
 class PublicacaoDeleteView(View):
     def get(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
-        contexto = { 'publicacao': publicacao, }
-        return render(
-            request, 'forum/apagaPublicacao.html',
-            contexto)
+        if publicacao.autor == request.user:
+            contexto = { 'publicacao': publicacao, }
+            return render(
+                request, 'forum/apagaPublicacao.html',
+                contexto)
+        else:
+            return HttpResponseRedirect(reverse_lazy(
+                    "forum:lista-publicacoes"))
+
     def post(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
-        publicacao.delete()
+        if publicacao.autor == request.user:
+            publicacao.delete()
         return HttpResponseRedirect(
             reverse_lazy("forum:lista-publicacoes"))
 
+@method_decorator(login_required, name='dispatch')
 class ComentarioDeleteView(View):
     def get(self, request, pk, *args, **kwargs):
         comentario = Comentario.objects.get(pk=pk)
