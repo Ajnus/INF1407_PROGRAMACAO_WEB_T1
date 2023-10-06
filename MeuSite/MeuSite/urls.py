@@ -50,8 +50,8 @@ urlpatterns = [
         ), name='sec-login'),
 
     path('accounts/profile/',
-        views.paginaSecreta,
-        name='sec-paginaSecreta'),
+        views.logado,
+        name='sec-logado'),
 
     path('logout/', LogoutView.as_view(
         next_page=reverse_lazy('sec-home'),

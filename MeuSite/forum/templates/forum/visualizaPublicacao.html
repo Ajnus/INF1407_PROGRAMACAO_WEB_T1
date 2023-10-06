@@ -8,20 +8,28 @@
 </head>
 <body>
     {% include 'forum/links.html' %}
-
-    <h1>{{publicacao.titulo}}</h1>
-    <h1>{{publicacao.texto}}</h1>
+    <h6>Post criado por {{publicacao.autor}}</h6>
+    <h3> Titulo: {{publicacao.titulo}}</h3>
+    <h5> Texto: {{publicacao.texto}}</h5>
     <table>
-     <tr><th>Comentario</th><th>Ações disponíveis</th></tr>
+     <tr><th>Autor</th><th>Comentario</th><th>Ações disponíveis</th></tr>
      {% if comentarios %}
         {% for comentario in comentarios %}
             <tr>
+            
+            <td>{{ comentario.autor }}</td>
             <td>{{ comentario.texto }}</td>
+
+
+            {% if comentario.autor.username == user.username %}
             <td>
                 
                 <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Excluir</a> 
             
             </td>
+            {% else %}
+            <td> </td>
+            {% endif %}
         </tr>
     {% empty %}
     <tr><th colspan="5">Ainda não tem comentarios cadastrados</th></tr>

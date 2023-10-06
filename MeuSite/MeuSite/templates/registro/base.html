@@ -18,7 +18,7 @@
     | <a href="{% url 'sec-completaDadosUsuario' pk=user.id %}">Terminar registro</a>
     {% else %}
     | <a href="{% url 'sec-registro' %}">Registrar</a>
-    | <a href="{% url 'sec-login' %}?next={% url 'sec-paginaSecreta' %}">
+    | <a href="{% url 'sec-login' %}?next={% url 'sec-logado' %}">
     Login
     </a>
     {% endif %}

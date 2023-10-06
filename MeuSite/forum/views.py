@@ -12,7 +12,8 @@ class PublicacaoView(View):
     def get(self, request, pk, *args, **kwargs):
         publicacao = Publicacao.objects.get(pk=pk)
         comentarios = Comentario.objects.filter(idPublicacao=pk)
-        contexto = { 'publicacao': publicacao, 'comentarios':comentarios}
+        user = request.user
+        contexto = { 'publicacao': publicacao, 'comentarios':comentarios, 'user':user}
         return render(
                 request,
                 'forum/visualizaPublicacao.html',
@@ -33,7 +34,7 @@ class PublicacaoView(View):
 class PublicacaoListView(View):
     def get(self, request, *args, **kwargs):
         publicacoes = Publicacao.objects.all()
-        contexto = { 'publicacoes': publicacoes, }
+        contexto = { 'publicacoes': publicacoes, 'user':request.user}
         return render(
                 request,
                 'forum/listaPublicacoes.html',

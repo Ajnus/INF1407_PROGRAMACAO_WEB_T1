@@ -29,8 +29,8 @@ def registro(request):
         'registro/registro.html', context)
 
 @login_required
-def paginaSecreta(request):
-    return render(request, 'registro/paginaSecreta.html')
+def logado(request):
+    return redirect('forum:lista-publicacoes')
 
 @login_required
 def home(request):

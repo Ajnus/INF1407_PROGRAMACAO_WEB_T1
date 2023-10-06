@@ -18,11 +18,18 @@
             <a href="{% url 'forum:ve-publicacao' pk=publicacao.id %}">{{ publicacao.titulo }}</a>
             </td> 
             <td>{{ publicacao.autor }}</td>
+            {% if publicacao.autor.username == user.username %}
+
             <td>
                 <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
                 <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Excluir</a> 
             
             </td>
+            {% else %}
+            <td>
+                Voce nao é o autor dessa publicacao
+            </td>
+            {% endif %}
         </tr>
     {% empty %}
     <tr><th colspan="5">Ainda não tem pubicacoes cadastradas</th></tr>
