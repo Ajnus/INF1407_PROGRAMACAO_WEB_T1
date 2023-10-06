@@ -4,19 +4,19 @@ em uma página HTML use:
 { % include 'forum/links.html' % }
 -->
 {% load static %}
-<a href="/">
-    Home-Page
-    </a> |
-    <a href="{% url 'forum:home-publicacoes' %}">
-    Página inicial
-    </a> |
+
     <a href="{% url 'forum:lista-publicacoes' %}">
-    Listar publicacoes
+    forum
     </a> |
     <a href="{% url 'forum:cria-publicacao' %}">
-        Cadastrar publicacao
-    </a> 
-    <p>
-        Você é {% firstof user.username "visitante" %}
-    </p>
+        criar publicacao
+    </a> |
+    <div>
+    <a href="{% url 'sec-logout' %}">
+        Logout
+    </a>  
+    <a>
+        |  {{user.username}}
+    </a>
+    </div>
     <hr>

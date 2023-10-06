@@ -10,14 +10,14 @@
     {% include 'forum/links.html' %}
     <h1>Lista de publicacoes</h1>
     <table>
-     <tr><th>Titulo</th><th>Texto</th><th>Ações disponíveis</th></tr>
+     <tr><th>Titulo</th><th>Autor</th><th>Ações disponíveis</th></tr>
      {% if publicacoes %}
         {% for publicacao in publicacoes %}
             <tr>
             <td>    
             <a href="{% url 'forum:ve-publicacao' pk=publicacao.id %}">{{ publicacao.titulo }}</a>
             </td> 
-            <td>{{ publicacao.texto }}</td>
+            <td>{{ publicacao.autor }}</td>
             <td>
                 <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
                 <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Excluir</a> 
