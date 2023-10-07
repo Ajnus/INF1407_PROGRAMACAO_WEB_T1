@@ -21,6 +21,25 @@ Além disso, o usuario pode adicionar comentarios a uma publicação, independen
 
 Importante lembrar que, como a maioria dos foruns, o THE FORUM é publico, mas para ver os textos das publicacoes e poder criar seus proprios é necessario autenticação.
 
+# Guia de instalação
+
+1) Clone o repositorio com:
+
+git clone https://github.com/miguelpgarcia/INF1407_T1.git
+
+2) Dentro do repositorio, ativa o ambiente virtual:
+
+source venv/bin/activate
+
+3) Instale os requirements
+
+pip install -r requirements.txt
+
+4) Execute o app
+
+python3 manage.py runserver
+
+
 
 # O que foi implementado
 
