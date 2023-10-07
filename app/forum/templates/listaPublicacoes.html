@@ -33,7 +33,8 @@
                 {% if publicacao.autor.username == user.username %}
 
                 <td>
-                    <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a> |
+                    <a href="{% url 'forum:atualiza-publicacao' pk=publicacao.id %}">Atualizar</a>
+                    <a style="color: white;"> |</a>
                     <a href="{% url 'forum:apaga-publicacao' pk=publicacao.id %}">Remover</a>
 
                 </td>
