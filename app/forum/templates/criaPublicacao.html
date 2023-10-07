@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" style="margin-left: 5px;">
     {% include 'links.html' %}
-    <h1 style="color: white;">Criar uma Publicação</h1>
-    <form action="" method="POST">
-        <fieldset style="width: max-content;">
-            <legend style="color: white;">Formulário de Publicação</legend>
-            {% csrf_token %}
-            <table style="color: white;" class='formulario'>
-                {{ formulario.as_table }}
-            </table>
-            <button type="submit">Criar publicação</button>
-        </fieldset>
-    </form>
+    <div class="d-flex flex-column justify-content-center justify-items-center" style="margin-left: 15px;">
+        <h1 style="color: white;">Criar uma Publicação</h1>
+        <form action="" method="POST">
+            <fieldset style="width: max-content;">
+                <legend style="color: white;">Formulário de Publicação</legend>
+                {% csrf_token %}
+                <table style="color: white;" class='formulario'>
+                    {{ formulario.as_table }}
+                </table>
+                <button type="submit">Criar publicação</button>
+            </fieldset>
+        </form>
+    </div>
 </body>

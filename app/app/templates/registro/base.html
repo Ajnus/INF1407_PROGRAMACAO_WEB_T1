@@ -10,10 +10,9 @@
 </head>
 
 <body class="bg-dark">
-    <h1 style="color: white;">Site Seguro</h1>
+    <h1 style="color: #00FF41;">The Forum</h1>
     <div style="color: white;">
         <a href="/">Homepage</a>
-        | <a href="{% url 'sec-home' %}">Página inicial de segurança</a>
         {% if user.is_authenticated %}
         | <a href="{% url 'sec-logout' %}">Logout</a>
         | <a href="{% url 'sec-password_change' %}">Trocar senha</a>

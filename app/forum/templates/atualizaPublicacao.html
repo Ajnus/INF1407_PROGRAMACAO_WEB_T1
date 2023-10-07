@@ -4,24 +4,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Atualiza Publicação</title>
+    <title>Edita Publicação</title>
     <link rel="stylesheet" href="{% static 'publicacoes/css/estilo.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" style="margin-left: 5px;">
     {% include 'links.html' %}
-    <h1 style="color: white;">Atualização de Publicações</h1>
-    <form method="POST" class='formulario'>
-        {% csrf_token %}
-        <table style="color: white;">
-            {{ publicacao.as_table }}
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Atualiza"></td>
-            </tr>
-        </table>
-    </form>
+    <div class="d-flex flex-column justify-content-center justify-items-center" style="margin-left: 15px;">
+        <h1 style="color: white;">Edição de Publicações</h1>
+        <form method="POST" class='formulario'>
+            {% csrf_token %}
+            <table style="color: white;">
+                {{ publicacao.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Edita"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 
 </html>

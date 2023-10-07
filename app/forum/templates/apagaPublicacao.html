@@ -8,17 +8,19 @@
     <title>Apaga Publicacao</title>
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" style="margin-left: 5px;">
     {% include 'links.html' %}
-    <h1 style="color: white;">Remoção de publicações</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <a style="color: white;">Confirma a remoção de {{ publicacao }}?<br></a>
-        <button>
-            <a href="{% url 'forum:lista-publicacoes' %}" style="text-decoration: none; color: black;">Cancela</a>
-        </button>
-        <input type="submit" value="Remover">
-    </form>
+    <div class="d-flex flex-column justify-content-center justify-items-center" style="margin-left: 15px;">
+        <h1 style="color: white;">Remoção de publicações</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <a style="color: white;">Confirma a remoção de "{{ publicacao }}"?<br></a>
+            <button>
+                <a href="{% url 'forum:lista-publicacoes' %}" style="text-decoration: none; color: black;">Cancela</a>
+            </button>
+            <input type="submit" value="Remover">
+        </form>
+    </div>
 </body>
 
 </html>

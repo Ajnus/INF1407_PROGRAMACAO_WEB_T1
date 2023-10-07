@@ -9,60 +9,62 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" style="margin-left: 5px;">
     {% include 'links.html' %}
-    <h6 style="color: white;">criado por: {{publicacao.autor}}</h6>
-    <h3 style="color: white;"> Título: {{publicacao.titulo}}</h3>
-    <h5 style="color: white;"> Texto: {{publicacao.texto}}</h5>
+    <div class="d-flex flex-column justify-content-center justify-items-center" style="margin-left: 15px;">
+        <h6 style="color: white;">criado por: {{publicacao.autor}}</h6>
+        <h3 style="color: white;"> Título: {{publicacao.titulo}}</h3>
+        <h5 style="color: white;"> Texto: {{publicacao.texto}}</h5>
 
-    <br><br><br>
-    <hr>
-    <a style="color: white;">Comentários</a>
-    <table>
-        <tr>
-            <th style="color: white;">Autor</th>
-            <th style="color: white;">Comentário</th>
-            <th></th>
-        </tr>
-        {% if comentarios %}
-        {% for comentario in comentarios %}
-        <tr>
+        <br><br><br>
+        <hr>
+        <a style="color: white;">Comentários</a>
+        <table>
+            <tr>
+                <th style="color: white;">Autor</th>
+                <th style="color: white;">Comentário</th>
+                <th></th>
+            </tr>
+            {% if comentarios %}
+            {% for comentario in comentarios %}
+            <tr>
 
-            <td style="color: white;">{{ comentario.autor }}</td>
-            <td style="color: white;">{{ comentario.texto }}</td>
+                <td style="color: white;">{{ comentario.autor }}</td>
+                <td style="color: white;">{{ comentario.texto }}</td>
 
 
-            {% if comentario.autor.username == user.username %}
-            <td>
+                {% if comentario.autor.username == user.username %}
+                <td>
 
-                <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Remover</a>
+                    <a href="{% url 'forum:apaga-comentario' pk=comentario.id %}">Remover</a>
 
-            </td>
+                </td>
+                {% else %}
+                <td> </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
+            </tr>
+            {% endfor %}
             {% else %}
-            <td> </td>
+            <tr>
+                <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
+            </tr>
             {% endif %}
-        </tr>
-        {% empty %}
-        <tr>
-            <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <th style="color: white;" colspan="5">Ninguém comentou ainda.</th>
-        </tr>
-        {% endif %}
-    </table>
+        </table>
 
-    <form>
-        {% csrf_token %}
-        <input type="text" name="comentario_nome">
-        </input>
-        <button method="submit" formmethod="post">
-            Criar Comentário
-        </button>
-    </form>
+        <form>
+            {% csrf_token %}
+            <input type="text" name="comentario_nome">
+            </input>
+            <button method="submit" formmethod="post">
+                Criar Comentário
+            </button>
+        </form>
 
+    </div>
 </body>
 
 </html>
