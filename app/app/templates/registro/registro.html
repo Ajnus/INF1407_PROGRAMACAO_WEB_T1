@@ -1,6 +1,7 @@
 {% extends 'registro/base.html' %}
 {% block title %}Registro de Usuário{% endblock %}
 {% block content %}
+<div class="d-flex flex-column justify-content-center justify-items-center" style="margin-left: 15px;">
 <h2 style="color: white;">Página de Registro</h2>
 <form method="post">
 {% csrf_token %}
@@ -13,3 +14,4 @@
 </table>
 </form>
 {% endblock %}
+</div>
