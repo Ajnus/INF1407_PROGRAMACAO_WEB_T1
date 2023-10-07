@@ -21,6 +21,12 @@ Além disso, o usuario pode adicionar comentarios a uma publicação, independen
 
 Importante lembrar que, como a maioria dos foruns, o THE FORUM é publico, mas para ver os textos das publicacoes e poder criar seus proprios é necessario autenticação.
 
+
+# Acesso Online 
+É possível acessar a versão online através de:
+http://miguelgarcia.pythonanywhere.com
+
+
 # Guia de instalação
 
 1) Clone o repositorio com:
@@ -38,6 +44,7 @@ pip install -r requirements.txt
 4) Execute o app
 
 python3 manage.py runserver
+
 
 
 
